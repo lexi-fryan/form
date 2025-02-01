@@ -1,32 +1,29 @@
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+// script.js
 
-    if (name && email && message) {
-        // Создаем элемент для сообщения
-        const messageElement = document.createElement('div');
-        messageElement.textContent = 'Спасибо за ваше сообщение, ' + name + '! Мы свяжемся с вами в ближайшее время.';
-        messageElement.style.backgroundColor = '#4CAF50'; // Зеленый фон
-        messageElement.style.color = '#fff'; // Белый текст
-        messageElement.style.padding = '15px';
-        messageElement.style.borderRadius = '5px';
-        messageElement.style.marginTop = '20px';
-        messageElement.style.textAlign = 'center';
-
-        // Добавляем сообщение перед формой
-        const form = document.getElementById('contact-form');
-        form.parentNode.insertBefore(messageElement, form.nextSibling);
-
-        // Очищаем форму
-        form.reset();
-
-        // Удаляем сообщение через 5 секунд
-        setTimeout(() => {
-            messageElement.remove();
-        }, 5000); // 5000 миллисекунд = 5 секунд
-    } else {
-        alert('Пожалуйста, заполните все поля формы.');
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    
+    // Обработчик события отправки формы
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Отменяем стандартную отправку формы
+        
+        const nameInput = document.getElementById('name').value.trim();
+        const emailInput = document.getElementById('email').value.trim();
+        const messageInput = document.getElementById('message').value.trim();
+        
+        if (!nameInput || !emailInput || !messageInput) {
+            alert('Пожалуйста, заполните все поля.');
+            return;
+        }
+        
+        // Здесь можно добавить код для отправки данных на сервер через AJAX или fetch,
+        // либо просто вывести сообщение о том, что форма была успешно отправлена.
+        
+        alert('Спасибо! Ваше сообщение было успешно отправлено.');
+        
+        // Очистка полей формы после отправки
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('message').value = '';
+    });
 });
